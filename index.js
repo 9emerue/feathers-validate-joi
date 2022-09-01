@@ -34,7 +34,7 @@ function setupValidateWithJoi(joiSchema, joiOptions, translator, ifTest) {
     throw new errors.GeneralError('getContext and setContext must be used together');
   }
 
-  return async function validateWithJoi(context, next) {
+  return async function validateWithJoi(context) {
     let values;
     if (typeof getContext === 'function') {
       values = getContext(context);
@@ -53,9 +53,6 @@ function setupValidateWithJoi(joiSchema, joiOptions, translator, ifTest) {
         }
       }
 
-      if (typeof next === 'function') {
-        return next(null, context);
-      }
       return context;
     } catch (error) {
       const formErrors = translator(error);
