@@ -66,7 +66,8 @@ function setupValidateWithJoi(joiSchema, joiOptions, translator, ifTest) {
           method: context.method,
         });
       }
-      return formErrors || error;
+
+      throw error;
     }
   };
 }
